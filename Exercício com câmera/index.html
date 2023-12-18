@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion History Photo</title>
+
+    <style>
+        @font-face {
+            font-family: 'Poppins', sans-serif;
+            src: url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300&family=Dancing+Script&family=Open+Sans:wght@300&family=Poppins:wght@300&family=Roboto:ital,wght@0,400;0,700;0,900;1,700&display=swap');
+        }
+        *{
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        .img-logo  img{
+            width: 70%;
+        }
+        .container{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+           margin: 0 60px;
+        }
+        header{
+            background-color: black;
+        }
+        .logo{
+            font-size: 30px;
+             font-weight: 600;
+             font-family: 'Poppins', sans-serif;
+             color: white;
+        }
+        .login{
+            border-radius: 10px;
+            border: 2.5px solid rgba(247, 247, 247, 0.53);
+            background: rgba(138, 135, 135, 0.00);
+             height: 42px;
+             width: 123px;
+        }
+        .blue{
+            color: rgb(25, 125, 218);
+        }
+        h1{
+            color: rgb(20, 20, 20);
+        }
+       .titulo-principal{
+            text-align: center;
+            margin: 30px 0;
+            font-family: 'Poppins', sans-serif;
+            line-height: 45px;
+        }
+        .verde, .roxo, .amarelo, .azul{
+            border-radius: 10px;
+            padding: 2px 6px;
+        }
+        .verde{
+            border: 2.5px solid #9FD39E;
+        }
+        .verde:hover{
+           background-color: #88e086;
+        }
+        .roxo{
+            border: 2.5px solid #D8C2DC;
+        }
+        .roxo:hover{
+           background-color: rgb(220, 177, 228);
+        }
+        .amarelo{
+            border: 2.5px solid #f1ed6e;
+        }
+        .amarelo:hover{
+           background-color: #f0eb5a;
+        }
+        .azul{
+            border: 2.5px solid #90D1DA;
+        }
+        .azul:hover{
+           background-color:#72cbd6;
+        }
+        .login{
+            color: white;
+        }
+        ul{
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            margin: 0 200px;
+        }
+       #foto{
+        height: 180px;
+            width: 180px;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: 50%;
+            position: relative;
+            margin-left: 360px;
+            margin-top: -10px;
+       }
+       #camera{
+        width: 300px;
+        height: 550px;
+        margin: auto;
+        background-image: url('img/pngtree-instagram-post-frame-with-love-symbol-vector-illustration-transparent-background-png-image_6492068-removebg-preview.png');
+        display: block;
+         background-size: cover;
+        background-position: center;
+       }
+       .post-foto{
+        position: absolute;
+            top: 0;
+            margin-top: -50px;
+            height: 300px;
+            width: 300px;
+            margin-left: -70px;
+            background-image: url(img/pngtree-instagram-post-frame-with-love-symbol-vector-illustration-transparent-background-png-image_6492068-removebg-preview.png);
+            background-size: cover;
+            pointer-events: none;
+            border-radius: 10px;
+       }
+       .botoes{
+        margin: 30px;
+       }
+       .botoes button {
+            padding: 15px;
+            border: 1px solid rgb(112, 112, 112);
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="img-logo">
+                <img src="img/logo branca.png" alt="" srcset="">
+            </div>
+            <h1 class="logo">Fashion History <span class="blue">Photo</span></h1>
+            <button type="submit" class="login">login</button>
+        </div>
+    </header>
+
+    <section id="section">
+        <h1 class="titulo-principal">Capture e compartilhe o instante perfeito enquanto mergulha em <br> <span class="verde">Podcast</span>
+             <span class="roxo">Jogos</span>
+             <span class="amarelo">Filmes</span>
+             <span class="azul">Livros</span>
+        </h1>
+        <ul>
+            <li>
+                <img src="img/Instagram1.svg" alt="" srcset="">
+            </li>
+            <li>
+                <img src="img/Instagram2.svg" alt="" srcset="">
+            </li>
+            <li>
+                <img src="img/Instagram3.svg" alt="" srcset="">
+            </li>
+            <li>
+                <img src="img/Group 4.svg" alt="" srcset="">
+            </li>
+        </ul>
+    
+    <div class="container">
+   <video id="camera" autoplay></video>
+   <div id="foto">
+    <div class="post-foto"></div></div>
+    <div class="botoes">
+   <button onclick="abrirCamera()">Abrir Camera</button>
+   <button onclick="tirarFoto()">Tirar Foto</button>
+   <button onclick="fechar()"> Fechar Camera</button>
+</div>
+</div>
+</section>
+
+
+
+   <script>
+    var mediaStream;
+
+    function abrirCamera(){
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false})
+        .then(function (stream){
+          mediaStream = stream;
+
+          const areaVideo = document.getElementById('camera');
+          areaVideo.srcObject = stream;
+        //   areaVideo.style.backgroundImage = "url('Exercício com câmera/img/pngtree-instagram-post-frame-with-love-symbol-vector-illustration-transparent-background-png-image_6492068-removebg-preview.png')";
+        })
+        .catch (function (error){
+          console.error('Erro ao acessar a câmera:', error);
+        });
+    }
+    function tirarFoto(){
+ const areaVideo = document.getElementById('camera');
+            const canvas = document.createElement('canvas');
+            canvas.width = areaVideo.videoWidth;
+            canvas.height = areaVideo.videoHeight;
+            const context = canvas.getContext('2d');
+            context.drawImage(areaVideo, 0, 0, canvas.width, canvas.height);
+            const imageDataURL = canvas.toDataURL();
+            const fotoDiv = document.getElementById('foto');
+            fotoDiv.style.backgroundImage = `url(${imageDataURL})`;
+            downloadLink.href = imageDataURL;
+            downloadLink.download = 'foto.png';
+            downloadLink.textContent = 'Clique para baixar';
+            document.body.appendChild(downloadLink);
+    }
+    function fechar() {
+    if (mediaStream) {
+        mediaStream.getTracks().forEach(track => track.stop());
+        const areaVideo = document.getElementById('camera');
+        areaVideo.srcObject = null;
+        mediaStream = null;
+    }
+}
+
+   </script>
+</body>
+</html>
